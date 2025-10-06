@@ -1,0 +1,175 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+    typeName: 'Libro',
+    typeNamePlural: 'Libros',
+    typeImageUrl: 'JPG',
+    imageUrl: 'Imagen',
+    title: {
+        type: #STANDARD,
+        label: 'Librería',
+        value: 'Titulo'
+                
+    },
+    description: {
+        type: #STANDARD,
+        label: 'Librería online'
+        
+    }
+} 
+@Search.searchable: true
+annotate entity ZC_LIBROS_HERZ
+    with 
+{
+    @UI: {
+    
+        facet: [
+        {
+            id: 'DetallesLib',                        
+            position: 10,            
+            label: 'Detalles del Libro',
+            type: #COLLECTION,            
+            targetQualifier: ''            
+         },
+         {
+            id: 'Libro',
+            parentId: 'DetallesLib',                        
+            position: 10,            
+            label: 'Detalles',
+            type: #FIELDGROUP_REFERENCE,            
+            targetQualifier: 'DetallesLib'            
+        },
+        {
+            id: 'Clientes',                                    
+            position: 20,            
+            label: 'Clientes',
+            type: #LINEITEM_REFERENCE,
+            targetElement: '_cli'                        
+        }                
+        ]
+        }
+        
+        @UI:{ 
+            fieldGroup: [
+                {
+                qualifier: 'DetallesLib',                        
+                position:10
+            }],
+            lineItem: [{
+                position: 10,            
+                importance: #HIGH,
+                emphasized: true,
+                isPartOfPreview: true,
+                label: 'Título'            
+            }],
+            selectionField: [{  
+                position:10
+            }]
+        }
+        Titulo;
+        @UI:{ 
+            fieldGroup: [{
+                qualifier: 'DetallesLib',                        
+                position:20
+            }],
+           lineItem: [{
+                position: 40,            
+                importance: #HIGH,
+                emphasized: true,
+                isPartOfPreview: true,
+                label: 'Autor'            
+            }]
+        }
+        Autor;
+        @UI: {
+        fieldGroup: [
+            {
+            qualifier: 'DetallesLib',                        
+            position:30
+        }],
+           lineItem: [{
+                position: 20,            
+                importance: #HIGH,
+                emphasized: true,
+                isPartOfPreview: true,
+                label: 'Editorial'            
+            }]
+        }
+        @Search: {
+        
+            defaultSearchElement: true,
+            ranking: #MEDIUM,
+            fuzzinessThreshold: 0.8                         
+        }
+        Editorial;
+        @UI:{ 
+            fieldGroup: [{
+                qualifier: 'DetallesLib',                        
+                position:31
+            }],
+            lineItem: [{ 
+                position: 50,            
+                inline: true,            
+                importance: #LOW 
+            }]
+         }
+        Idioma;
+        @UI:{ 
+            fieldGroup: [
+            {
+                qualifier: 'DetallesLib',                        
+                position:40
+            }],
+            lineItem: [{ 
+                position: 60,            
+                inline: true,            
+                importance: #LOW 
+            }]
+         }
+        Paginas;
+        @UI:{ 
+            fieldGroup: [
+            {
+            qualifier: 'DetallesLib',                        
+            position:50
+            }],
+           lineItem: [{
+                position: 30,            
+                importance: #HIGH,
+                emphasized: true,
+                isPartOfPreview: true,
+                label: 'Categoría'            
+            }],            
+            selectionField: [{  
+                position:20
+            }]
+        }
+        @Consumption.valueHelpDefinition: [{
+            entity: {
+                name: 'ZC_CATEGO_HERZ',
+                element: 'Descripcion'                 
+            } ,
+            useForValidation: true,                        
+            label: 'Categoría'           
+        }]        
+        Categoria;
+        @UI:{
+            fieldGroup: [
+                {
+                qualifier: 'DetallesLib',                        
+                position:60
+            }],
+            lineItem: [{                   
+                position: 70,            
+                inline: true,            
+                importance: #MEDIUM,
+                emphasized: true,
+                rowSpanForDuplicateValues: true,            
+                label: '¿Qué tal las ventas?',            
+                criticality: 'ventas',
+                criticalityRepresentation: #ONLY_ICON
+            }]
+           }        
+        Estado;
+        
+            
+}

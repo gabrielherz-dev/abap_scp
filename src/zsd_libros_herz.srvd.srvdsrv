@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service binding Libros'
+define service ZSD_LIBROS_HERZ {
+  expose ZC_LIBROS_HERZ as Libros;
+  expose ZC_CLIENT_HERZ as Clientes;
+  expose ZC_CATEGO_HERZ as Categorias;
+}

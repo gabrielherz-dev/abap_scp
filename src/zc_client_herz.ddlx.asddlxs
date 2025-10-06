@@ -1,0 +1,14 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZC_CLIENT_HERZ
+    with 
+{
+    @UI.lineItem: [{ position: 10, importance: #HIGH }]
+    IdCliente;    
+    @UI.lineItem: [{ position: 20, importance: #HIGH }]        
+    Nombre;
+    @UI.lineItem: [{ position: 30, importance: #HIGH }]
+    Apellidos;
+    @UI.lineItem: [{ position: 50, importance: #LOW }]
+    Email;    
+    
+}
