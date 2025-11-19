@@ -92,14 +92,14 @@ annotate entity ZC_LIBROS_HERZ
                 emphasized: true,
                 isPartOfPreview: true,
                 label: 'Editorial'            
-            }]
-        }
-        @Search: {
-        
+            }]            
+        }        
+        @Search: {        
             defaultSearchElement: true,
             ranking: #MEDIUM,
             fuzzinessThreshold: 0.8                         
         }
+                     
         Editorial;
         @UI:{ 
             fieldGroup: [{
@@ -146,7 +146,7 @@ annotate entity ZC_LIBROS_HERZ
         @Consumption.valueHelpDefinition: [{
             entity: {
                 name: 'ZC_CATEGO_HERZ',
-                element: 'Descripcion'                 
+                element: 'BiCateg'                 
             } ,
             useForValidation: true,                        
             label: 'Categoría'           

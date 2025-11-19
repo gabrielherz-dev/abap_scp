@@ -28,11 +28,9 @@ define view entity ZC_LIBROS_HERZ as select from ztb_libros_herz as lib
         cat.Descripcion as Descripcion,
         cat.TipoAcceso as TipoAcceso,
         case
-            when VENt.num_ventas <= 0 then 0
-            when VENt.num_ventas between 1 and 2 then 1
-            when VENt.num_ventas > 2 and VENt.num_ventas <= 3 then 2
-            when VENt.num_ventas >= 4 then 3
-            else 0
+            when VENt.num_ventas between 1 and 2 then 2
+            when VENt.num_ventas >= 3   then 3            
+            else 1
         end as ventas,
         '' as Estado,
         

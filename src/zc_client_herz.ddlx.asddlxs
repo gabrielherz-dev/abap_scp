@@ -1,14 +1,70 @@
 @Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+    typeName: 'Cliente',
+    typeNamePlural: 'Clientes',
+    typeImageUrl: 'JPG',    
+    title: {
+        type: #STANDARD,
+        label: 'Cliente',
+        value: 'IdCliente'
+                
+    },
+    description: {
+        type: #STANDARD,
+        label: 'Datos del Cliente'
+        
+    }
+} 
 annotate entity ZC_CLIENT_HERZ
     with 
 {
-    @UI.lineItem: [{ position: 10, importance: #HIGH }]
-    IdCliente;    
-    @UI.lineItem: [{ position: 20, importance: #HIGH }]        
+ @UI: {
+    
+        facet: [
+        {
+            id: 'DetallesCliente',                        
+            position: 10,            
+            label: 'Detalles del Cliente',
+            type: #COLLECTION,            
+            targetQualifier: ''            
+         },
+         {
+            id: 'Libro',
+            parentId: 'DetallesCliente',                        
+            position: 10,            
+            label: 'Detalles',
+            type: #FIELDGROUP_REFERENCE,            
+            targetQualifier: 'DetallesCliente'            
+        }        
+        ]}
+    
+    @UI:{ 
+        fieldGroup: [{ qualifier: 'DetallesCliente', position: 10 }],
+        lineItem: [{ position: 10, importance: #HIGH }]
+    }
+    IdCliente;
+    @UI:{ 
+        fieldGroup: [{ qualifier: 'DetallesCliente', position: 20 }],
+        lineItem: [{ position: 20, importance: #HIGH }]
+    }
     Nombre;
-    @UI.lineItem: [{ position: 30, importance: #HIGH }]
+    @UI:{ 
+        fieldGroup: [{ qualifier: 'DetallesCliente', position: 30 }],
+        lineItem: [{ position: 30, importance: #HIGH }]
+    }    
     Apellidos;
-    @UI.lineItem: [{ position: 50, importance: #LOW }]
-    Email;    
+    @UI:{ 
+        fieldGroup: [{ qualifier: 'DetallesCliente', position: 40 }],
+        lineItem: [{ position: 40, importance: #MEDIUM }]
+    }    
+    Email;
+    @UI:{ 
+        fieldGroup: [{ qualifier: 'DetallesCliente', position: 60 }]        
+    }    
+    Url;    
+    @UI:{ 
+        fieldGroup: [{ qualifier: 'DetallesCliente', position: 50 }]        
+    }    
+    TipoAcceso;
     
 }
